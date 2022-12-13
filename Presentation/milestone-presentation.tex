@@ -1,0 +1,132 @@
+\documentclass[12pt,preprintnumbers,amsmath,amssymb,nofootinbib,superscriptaddress]{revtex4-1}
+\usepackage[paperheight=12cm,top=0.5cm,bottom=0.5cm,left=1cm,right=1cm]{geometry}
+\usepackage{xparse}
+\NewDocumentCommand{\DIV}{om}{%
+  \IfValueT{#1}{\setcounter{#2}{\numexpr#1-1\relax}}%
+  \csname #2\endcsname
+}
+
+\usepackage[latin1]{inputenc}
+\usepackage{slashed}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{indentfirst}
+\usepackage{color}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref}
+%\usepackage[top=2cm,bottom=2cm,left=3cm,right=2cm]{geometry}
+\usepackage{subcaption}
+\newcommand{\nin}{\noindent}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\br}{\hskip .25cm/\hskip -.25cm}
+\newcommand{\hf}{\frac{1}{2}}
+\newcommand{\nn}{\nonumber\\}
+\newcommand{\la}{\hskip .25cm^\leftarrow\hskip -.25cm}
+\newcommand{\dg}{^\dagger}
+\newcommand{\Od}{\mathcal{O}} % Shorthand for Order symbol
+\newcommand{\pink}{\textcolor{magenta}} % Shorthand for pink text
+\usepackage{graphicx,graphics}
+\graphicspath{{figures/}}
+
+\usepackage[skins,theorems,many]{tcolorbox}
+\tcbset{highlight math style={enhanced,
+  colframe=red,colback=white,arc=0pt,boxrule=1pt}}
+
+\usepackage[abs]{overpic}
+\usepackage{xcolor,varwidth}
+\usepackage{booktabs} %\midrule for better \hline in tables
+
+\usepackage[english]{babel}
+\usepackage{blindtext,tikz}
+\usetikzlibrary{calc}
+
+\usepackage{fancyhdr}
+
+%--------------------------%
+%----- COLOURED BOXES -----%
+%--------------------------%
+
+%Blue equation box
+%\tcbhighmath[colframe=RoyalBlue!70!black,colback=RoyalBlue!25!white]{
+
+%Orange equation box
+%\tcbhighmath[colframe=BurntOrange!95!black,colback=BurntOrange!45!white]{
+
+%Purple equation box
+%\tcbhighmath[colframe=Purple!150!black,colback=Purple!30!white]{
+
+%Green equation box
+%\tcbhighmath[colframe=ForestGreen,colback=ForestGreen!25!white]{
+
+%Grey equation box
+%\tcbhighmath[colframe=Black,colback=Black!10!white]{
+
+%Pink equation box
+%\tcbhighmath[colframe=magenta,colback=magenta!20!white]{
+
+%Blue and red equation box
+%\tcbhighmath[frame style={left color=RoyalBlue!70!black,right color=Red!95!black},interior style={left color=RoyalBlue!35!white,right color=Red!50!white}]{
+
+%Red and green equation box
+%\tcbhighmath[frame style={left color=Red!95!black,right color=ForestGreen},interior style={left color=Red!50!white,right color=ForestGreen!25!white}]{
+
+\begin{document}
+
+\iffalse
+\tikz[overlay,remember picture]
+{
+    \node at ($(current page.west)+(1,0)$) [rotate=90] {\Large\textcolor{gray}{arXiv:0000.12345 [hep-th] 30 June 1999}};
+}
+\fi
+
+
+
+\pagenumbering{gobble}
+
+\hfill{}
+
+\vspace{2.5cm}
+
+\title{
+\tcbhighmath[frame style={left color=RoyalBlue!70!black,right color=Red!95!black},interior style={left color=RoyalBlue!35!white,right color=Red!50!white},boxrule=2pt]{
+\text{\Large Time-optimal Flying a VTOL Drone}
+}}
+
+\author{Leonardo Igler}
+\author{Larissa Rickler}
+
+
+
+\maketitle
+
+\newpage
+
+\DIV[1]{section}{Section}
+\vspace{-0.7cm}
+\DIV[1]{subsection}{Subsection}
+\vspace{-0.2cm}
+\hrule
+
+\vspace{\fill}
+\centering
+[1] J. Alexandre and D. Backhouse (2022)
+
+\newpage 
+
+\DIV[2]{section}{References}
+\vspace{-0.2cm}\hrule
+
+\bea
+[1] & \text{J. Alexandre and D. Backhouse, Phys. Rev. D 105, 105018 (2022) [\href{https://arxiv.org/pdf/2203.12543.pdf}{\pink{arXiv:2203.12543 [hep-th]}}]}\nonumber
+\eea
+
+\vspace{\fill}
+\centering
+Template submitted by Drew Backhouse
+
+\end{document}
