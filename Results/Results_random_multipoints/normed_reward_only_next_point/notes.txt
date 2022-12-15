@@ -1,4 +1,0 @@
-reward normed: greater reward for reaching goal, scaled down reward for progress. (still no overall progress)
-
-only next point in observation space.
-
