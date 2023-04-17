@@ -1,0 +1,97 @@
+\documentclass[conference]{IEEEtran}
+%\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Project Proposal}
+
+\author{\IEEEauthorblockN{Larissa Rickler}
+\IEEEauthorblockA{(03697651)\\
+larissa.rickler@tum.de}
+\and
+\IEEEauthorblockN{Leonardo Igler}
+\IEEEauthorblockA{(03702035)\\
+leonardo.igler@tum.de}
+
+}
+
+\maketitle
+
+
+
+
+\begin{abstract}
+We aim to minimize the flight time of a VTOL drone through a sequence of waypoints. We are planning to utilize deep reinforcement learning methods to train a robust neural network controller.
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+reinforcement learning, VTOL drone, neural network controller
+\end{IEEEkeywords}
+
+\section{Objective}
+In order to exploit the full potential of drones, it is necessary to explore the boundaries of their performance in maneuvering without a human operator. Hence, racing competitions that aim to minimize the flight time though a sequence of waypoints represented by gates are of great relevance for further research developments in this field. 
+By the nature of racing, the drones are forced to operate close to their aerodynamic boundaries and are pushed towards their performance limits. This provides high requirements for the quality and robustness of the proposed controller.
+
+We aim to implement a neural network controller that uses deep reinforcement learning methods.
+The controller enables a drone to faithfully follow a path though a sequence of gates, while minimizing the required time for completion. We plan to develop a completely learned policy, which measures inputs from its environment and performs all flight maneuvers without the need a regular controller.
+
+\section{Related Work} % Debug: andere paper? muss eine vieltel seite sein bissen mehr schreiben
+This research will build upon the results achieved by Penicka et al. \cite{b1}. In their work, they implemented a robust neural network controller for a quadrotor, which achieved a 100\% success rate at realizing minimum time policies while avoiding collisions with its environment. 
+
+Their training strategy can be divided into two different stages. During the first step, the quadrotor learns how to fly slow but collision free trajectory through the course. After ensuring a safe flight path, the second stage will enable the model to train the desired minimum-time policy. 
+
+However, the neural networks processing of incoming input signals does not directly actuate the four propellers of the quadrotor. While the neural network only outputs a term for the thrust and body rates of the vehicle, it is up to a low-level controller to access the four actuators and actually set the vehicle into motion. 
+
+
+\section{Technical Outline}
+Our project utilizes a drone, which just as the quadrotor possesses the ability of taking off and lading vertically. These features however, are combined with a winged, streamlined and aerodynamic body, which offers greater efficiency during the flight phase. In this sense, it combines the best features of the standard VTOL drone and regular planes. This drone contains four different actuators to control the movements of the aerial vehicle: Two propellers on its wings as well as one control surface on each side. This special construction offers a more complex interaction between the different actuators, then in the quadrotor used by Penicka et al. \cite{b1}.
+
+Differently to their work, we will abstain from incorporating additional obstacles in the racing path. However, we introduce a new complexity regarding the learning of the controller, by eliminating the low-level controller used in the paper by Penicka et al. \cite{b1}. By eliminating this step, we attempt to achieve a completely learned process from the sensor readings, to the action policy and lastly the actuation. Solely based on position, velocity, orientation, body rates and the path given by the waypoints, the learned controller should be able to safely traverse the path. 
+
+\subsection{Tools}
+We will use the high efficient, flexible and dynamic programming language Julia \cite{b5} to implement the neural network controller, especially the package ReinforcementLearning.jl \cite{b6}. The package provides a collection of useful tools for reinforcement learning research in Julia such as predesigned components and interfaces to implement new algorithms and run benchmark experiments with ease.
+In addition, we will utilize the environment Flyonic for VTOL drone to test our implementation in an experimental setup. 
+% Debug Quellen: https://github.com/JuliaReinforcementLearning/ReinforcementLearning.jl/blob/master/CITATION.bib
+
+\subsection{Milestones} 
+Our group aims at realizing the proposed project in a plan made out of three essential key milestones:
+\begin{itemize}
+  \item 3 weeks into the project: Enable the VTOL model to reach waypoints on a 2D space, firstly using only the propellers of the provided drone model.
+  \item 6 weeks into the project: Learn a policy which is able to follow through 2D trajectories, still making use only of the drone's propellers.
+  \item 10 weeks into the project: Make the drone fly through a defined racing trajectory in a 3D space, using not only its propellers, but also its flaps. Aiming to minimize the flight time.
+\end{itemize}
+
+
+
+\begin{thebibliography}{00}
+\bibitem{b1} 
+R. Penicka, Y. Song, E. Kaufmann, and D. Scaramuzza, “Learn- ing minimum-time flight in cluttered environments,” arXiv preprint arXiv:2203.15052, 2022.
+\bibitem{b5}
+Julia. Julia. http://julialang.org.
+\bibitem{b6}
+Jun Tian and other contributors. ReinforcementLearning.jl: A Reinforcement Learning Package for the Julia Programming Language. 2020. https://github.com/JuliaReinforcementLearning/ReinforcementLearning.jl.
+
+
+\end{thebibliography}
+\vspace{12pt}
+\textbf{}
+
+
+\end{document}
+
+\iffalse % Debug
+Ich würde eher nicht "aircraft" benutzen. Damit meint man meistens ein Flugzeug. 
+
+Keine Quellen im Abstract, wenn nicht absolut nötig.
+
+Meinte Finn nicht das wir erstmal nicht den Weg und damit auch die Geschwindigkeit optimieren sollten? Oder ging es da um die Hindernisse?
+\fi

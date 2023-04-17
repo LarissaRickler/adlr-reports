@@ -1,0 +1,33 @@
+Optimizing the reward \eqref{equ:reward} directly could lead to suboptimal performance due to local minima and a higher risk of missing the waypoints in high speed flight. To overcome this we used a curriculum learning strategy. 
+
+First, in an initial slow learning phase a slow and stable policy is trained that follows the trajectory closely and stays within a velocity range between $v_{min}$ and $v_{max}$. 
+Second, a fast learning phase in which a racing policy was trained by encouraging velocities above a threshold $v_{min}$ while still reaching the waypoints. 
+
+We achieve this by scaling the reward differently in the respective phase. The reward hyperparameters for progress $k_p$ and distance $k_s$ were scaled by a factor $s_m$ that encouraged translation velocities between $v_{min}$ and $v_{max}$. This scaling factor also motivates the drone to stay within a distance of $d_{max}$ to the trajectory. Note that $v_{min}$, $v_{max}$ and $d_{max}$ differ in the different phases. In the fast learning phase a dummy value for $v_{max}$ was inserted. The scaling factor $s_m$ is calculated as
+\begin{align*}
+     & s_m = s_{v} \cdot s_{gd}, \\
+     & s_{v} = \min(1, 10^{v_{max}-||v||}) \cdot \min(1, 10^{||v||-v_{min}}), \\
+     & s_{gd} = \min(1,e^{ - \|p - \psi(p) \| + d_{max}}).
+\end{align*}
+
+Furthermore, to ensure that the drone still reaches the waypoints even in high speed flight $k_p$ and $k_s$ were scaled down in the fast learning phase such that the term for reaching a point $k_{wp}r_{wp}$ was in comparison more rewarding. Ablating this scale down would lead to uncontrolled speedup and therefore to missing waypoints.  
+Moreover, the parameter $k_{\omega}$ was reduced in the fast learning phase to allow for more rapid maneuvering. See Table \ref{table:parameters_learning_phase} for details on the parameters that were used for the respective phase. 
+
+
+\begin{table*}[h]
+        \centering
+        \caption{Parameters of the algorithm.}
+        \begin{tabular}{c @{\hspace{0.75\tabcolsep}} c |@{\hspace{0.75\tabcolsep}} c @{\hspace{0.75\tabcolsep}} c |@{\hspace{0.75\tabcolsep}} c @{\hspace{0.75\tabcolsep}} c |@{\hspace{0.75\tabcolsep}} c @{\hspace{0.75\tabcolsep}} c |@{\hspace{0.75\tabcolsep}} c @{\hspace{0.75\tabcolsep}} c |@{\hspace{0.75\tabcolsep}} c @{\hspace{0.75\tabcolsep}} c} 
+             \hline
+             \multicolumn{4}{c|@{\hspace{0.75\tabcolsep}}}{General parameters} &  \multicolumn{4}{c |@{\hspace{0.75\tabcolsep}}}{Slow learning phase} & \multicolumn{4}{c}{Fast learning phase} \\ [0.1ex] 
+             \hline
+             \hline 
+             Variable & Value & Variable & Value & Variable & Value & Variable & Value & Variable & Value & Variable & Value  \\ [0.1ex] 
+             \hline
+             $\Delta t$ [s] & $0.025$ & $fall$ [-] & 1 & $v_{min}$ [m/s] & $1.0$ & $k_p$ [-] & $5.0 \cdot s_m$ & $v_{min}$ [m/s] & $4.0$ & $k_p$ [-] & $\frac{5.0 \cdot s_m}{\sum_{i=1}^{n-1} \|g_{i+1} -g_i\|}$\\ [0.2ex]
+             $n$ [-] &  4  & $k_{wp}$ [-] & $50.0$ & $v_{max}$ [m/s] & $3.0$ & $k_\omega$ [-] & 0.01 & $v_{max}$ [m/s] & $50.0 $  & $k_\omega$ [-] & 0.001\\ [0.2ex]
+             $r_{tol}$ [m] & 0.5 & $r_{wp}$ [-] & $\exp(\frac{d_{wp}}{r_{tol}})$ & $d_{max}$ [m] & 0.5 & $k_s$ [-] & $\frac{2v_{max}\Delta t \cdot s_m}{\sum_{i=1}^{n-1} \|g_{i+1} -g_i\|}$  & $d_{max}$ [m] & 1.0 & $k_s$ [-] & $\frac{2v_{max}\Delta t \cdot s_m }{\left(\sum_{i=1}^{n-1} \|g_{i+1} -g_i\|\right)^2}$ \\ [1.0ex]          
+             \hline
+        \end{tabular}
+        \label{table:parameters_learning_phase}
+    \end{table*}

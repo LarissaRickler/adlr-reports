@@ -1,0 +1,89 @@
+\documentclass[conference]{IEEEtran}
+%\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{dblfloatfix}
+\usepackage{placeins}
+\usepackage[hidelinks]{hyperref}
+\usepackage{svg}
+
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Time-optimal Flying a VTOL Drone}
+
+\author{\IEEEauthorblockN{Larissa Rickler}
+\IEEEauthorblockA{%(03697651)\\
+larissa.rickler@tum.de}}
+
+\maketitle
+
+
+\begin{abstract}
+\label{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\begin{IEEEkeywords}
+reinforcement learning, VTOL drone, quadrotor, low-level neural network controller
+\end{IEEEkeywords}
+
+\section{Introduction}
+\label{sec:introduction}
+\input{sections/introduction}
+
+\section{Methods}
+\label{sec:methods}
+\input{sections/methods}
+
+\section{Results and Discussion}
+\label{sec:results}
+\input{sections/results}
+
+\section{Conclusion}
+\label{sec:conclusion}
+\input{sections/conclusion}
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{final-report}
+
+\end{document}
+
+\iffalse
+Lecture Website:
+Final Report and Presentation
+The final report should be in the style of a short research paper of about three pages (one page text) and should describe and motivate the method, and discuss the results, including any relevant figures or plots.
+In addition, each team has to present their results in a Zoom meeting.
+
+TODO:
+-abstract
+-add vtol 2d in text (policy architecture)
+
+
+-proplem statement min time and quadrotor dynmamics + trajectory or at least telling that reaching waypoints within certain proximity is required.
+-add hardware 2d 3d
+
+-termination criteria unterschiede 3D/2D
+-trajectory generation 2D/3D
+
+-add 2D to policy architeture
+
+-compare to paper? 3.5 <-> 1.8 (low level controller are known to be worse than controller + PID
+
+-evtl tabellen network zu einer mergen
+
+-2D approach or 3D approach instead of just 2D or 2D
+
+\fi

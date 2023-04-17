@@ -1,0 +1,59 @@
+\begin{figure*}[t]
+    \centering
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results/success_rate.svg}
+        \caption{Success rate per step for both learning phases in 2D.}
+        \label{fig:2D_success_rate}
+    \end{subfigure}
+    \hfill  
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results/avg_velocity.svg}
+        \caption{Average velocity per step for both learning phases in 2D.}
+        \label{fig:2D_velocity}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results3D/success_rate_3D.svg}
+        \caption{Success rate per step for both learning phases in 3D.}
+        \label{fig:3D_success_rate}
+    \end{subfigure}
+    \hfill  
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results3D/avg_velocity_3D.svg}
+        \caption{Average velocity per step for both learning phases in 3D.}
+        \label{fig:3D_velocity}
+    \end{subfigure}
+    
+    \caption{Evaluation of our policy per training step. Discussed in Section \ref{sec:results}.}
+    \label{fig:results}
+\end{figure*}
+
+To validate the trained policy, we tested it on 200 trajectories that were generated similarly as the training paths. We investigated the achieved success rate on reaching every point within the tolerance and the average velocity of the successful flights per training step for both the slow and fast learning phase. The fast flight policy was retrained with the model parameters after $0.5 \times 10^6$ of slow phase training. In \cite{videos} videos of the results of each of the following experiments can be found.
+
+\subsection{Evaluation of 2D World Setting}
+The success rate in the slow learning phase increases in a fast pace. After 500,000 steps the rate already consistently reaches values over 90\%, as seen in Figure \ref{fig:2D_success_rate}. The average velocity of a successful slow flight approached $3\frac{\text{m}}{\text{s}}$ which corresponds to $v_{max}$, see Figure \ref{fig:2D_velocity}.
+
+Figure \ref{fig:2D_success_rate} also shows that the success rate in the fast learning phase remains in almost ever step by over 90\%, as . After $1.5 \times 10^6$ steps of the fast learning phase, the simulated elektra VTOL3 drone reaches speeds of up to $6\frac{\text{m}}{\text{s}}$ which is optimal for this model as illustrated in Figure \ref{fig:2D_velocity}.
+
+\subsection{Evaluation of 3D World Setting}
+In the slow learning phase, the quadrotor model's success rate consistently reaches values between 96\% and 100\% after $15.0 \times 10^6$ steps as shown in Figure \ref{fig:3D_success_rate}. This is probably due to its high agility. Figure \ref{fig:3D_velocity} shows that the average velocity again approaches $3\frac{\text{m}}{\text{s}}$ as encouraged by $v_{max}$. 
+
+The high success rate remains over 96\% in the fast learning phase as illustrated in Figure \ref{fig:3D_success_rate}. After $40.0 \times 10^6$ steps the quadrotor's average speed seems to converge to $4\frac{\text{m}}{\text{s}}$ which was the value we chose for $v_{min}$ as illustrated in Figure \ref{fig:3D_velocity}. This is not time optimal yet. We hypothesize that the curriculum learning strategy needs to be extended to more phases in which $v_{min}$ is slowly increased to achieve even better results. 
+
+\subsection{Evaluation on the Office Trajectory}
+To compare our results to those of \cite{Penicka_2022}, we retrained our fast flight model on horizontal trajectories for another $40.0 \times 10^6$ steps. The trajectories were generated as in \eqref{equ:trajectory_generation} with $z_i \sim \mathcal{U}_3([-8.0,0.0] \times [-4.0,4.0] \times 0)$. We than generated a collision free trajectory to mimic the path optimal trajectories through the so called office environment. The office is one of the test environments used in \cite{Penicka_2022}. In \cite{office_environment} the environment and the generated trajectory is shown. Here we evaluated 30 runs. The success rate was 100\% even though the test trajectory had much sharper curves than the training trajectories. The average velocity during those runs were $7 \frac{\text{m}}{\text{s}}$. In Table \ref{table:compare} our results are compared with those of Penicka et al. The better results of their algorithm are due to an additional use of a path planning algorithm as well as their use of an low-level PID controller to convert their action signals to speed commands. This action modality has been identified as optimal for learned control policies for quadrotor by \cite{Controller_benchmarking}. 
+
+\begin{table}[t]
+\centering
+\caption{Comparison of success rate, average completion time and best completion time in the office environment.}
+                \begin{tabular}{c|c|c|c} 
+                 \hline 
+                  & success[\%] & avg. compl. time [s] & best. compl. time [s] \\ [0.1ex]
+                  \hline
+                  \hline
+                 \cite{Penicka_2022} & 100 & 1.74 & 1.72 \\ [0.1ex] 
+                 ours & 100 & 3.61 & 3.55 \\ [0.1ex] 
+                 \hline
+                 \end{tabular}
+\label{table:compare}
+\end{table}

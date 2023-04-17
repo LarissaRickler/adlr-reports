@@ -1,0 +1,83 @@
+\documentclass[conference, onecolumn]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Draft Proposal}
+
+\author{\IEEEauthorblockN{Larissa Rickler}
+\IEEEauthorblockA{(03697651)\\
+larissa.rickler@tum.de}
+\and
+\IEEEauthorblockN{Leonardo Igler}
+\IEEEauthorblockA{(03702035)\\
+leonardo.igler@tum.de}
+
+}
+
+\maketitle
+
+
+
+\section{Topic}
+Our group prefers to work on topic 5: "Learning to Fly". Fixed-wing VTOL (Vertical Take-Off and Landing) drones are highly efficient in long-range flight. However, they present difficulties regarding the design of reliable controllers \cite{b1}, specially during gusty landing phases.
+Based on the previous work by Xu et al. \cite{b2}, our group proposes to extend their suggested learned controller to further increase its stability and robustness under rough conditions. This is achieved through the integration of additional sensor readings inside the neural network controller.
+
+\section{Bullet Points}
+
+\subsection{Basis}
+\begin{itemize}
+  \item Xu et al. \cite{b2} introduced a controller design with an error convolution input trained by reinforcement learning, enabling the learned controller to adapt for different airframes. Through the use of an integral block, it is attempted to close the gap between real world and simulation. However the authors acknowledges that further sensor readings, such as position sensors, could positively affect the performance of the controller
+
+\end{itemize}
+
+\subsection{Extensions}
+\begin{itemize}
+  \item Investigate what sensor readings could be added to the state space to increase stability in gusty conditions
+  % Diesen nächsten Punkt finde ich wichtig, weil wir am Ende ja nicht nur Gedanken machen sollten was helfen würde, sondern unsere Idee auch in die Tat umsetzen wollen.
+ % \item Implement the discovered sensor reading inside the neural network controller
+ %  alternativ?
+  \item Extend the neural network controller with these preferable sensor readings
+  \item Transfer one of the approaches to VTOL drones with only two propellers
+  \item  Utilize the drone model provided by DLR, implemented in Julia
+\end{itemize}
+
+\begin{thebibliography}{00}
+\bibitem{b1}
+D. Rohr, M. Studiger, T. Stastny, N. R. J. Lawrance and R. Siegwart, "Nonlinear model predictive velocity control of a vtol tiltwing uav", \textit{IEEE Robotics and Automation Letters}, vol. 6, no. 3, pp. 5776-5783, 2021.
+
+\bibitem{b2} Xu, Jie and Du, Tao and Foshey, Michael and Li, Beichen and Zhu, Bo and Schulz, Adriana and Matusik, Wojciech, ``Learning to fly: computational controller design for hybrid UAVs with reinforcement learning''. \textit{ACM Transactions on Graphics}, 38(42):1–12, July 2019. doi: 10.1145/3306346.3322940.
+
+\end{thebibliography}
+\vspace{12pt}
+
+\end{document}
+
+
+\iffalse
+!!!IMPORTANT!!!
+
+Your team must be registered by one of the two team members by sending an email (with the other team member in CC) to
+berthold.baeuml@tum.de
+
+with the following content:
+Subject: [IN2349] team registration
+
+
+<matrikel number of member 1>
+
+<matrikel number of member 2>
+
+
+Attachment: draft-proposal.pdf
+
+Send this email by 27 October 2022, 24:00 the latest, including a first draft version of your project proposal (title, bullet points, papers).
+\fi

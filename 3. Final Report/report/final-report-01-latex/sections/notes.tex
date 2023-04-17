@@ -1,0 +1,323 @@
+\begin{table*}[h]
+\centering
+\caption{Parameters of the algorithm in the respective learning phase.}
+    \begin{subtable}[h]{0.3\textwidth}
+        \centering
+        \caption{General parameters of algorithm.}
+        \begin{tabular}{c  c | c  c } 
+             \hline 
+             Variable & Value & Variable & Value \\ [0.1ex] 
+             \hline
+             \hline
+             $\Delta t$ [s] & $0.025$ & $fall$ [-] & 1 \\ [0.2ex] 
+             $n$ [-] &  4  & $k_{wp}$ [-] & $50.0$ \\ [0.2ex] 
+             $r_{tol}$ [m] & 0.5 & $r_{wp}$ [-] & $\exp(d_{wp}/r_{tol})$ \\ [1.0ex]
+             \hline
+        \end{tabular}
+        \label{subtable:generel_parameters}
+    \end{subtable}
+    \hfill
+    \begin{subtable}[h]{0.3\textwidth}
+        \centering
+        \caption{Parameters of slow learning phase.}
+        \begin{tabular}{c c | c c} 
+             \hline 
+             Variable & Value & Variable & Value \\ [0.1ex] 
+             \hline
+             \hline
+             $v_{min}$ [m/s] & $1.0$ & $k_p$ [-] & $5.0 \cdot s_m$ \\[0.2ex] 
+             $v_{max}$ [m/s] & $3.0$ & $k_\omega$ [-] & 0.01 \\[0.2ex] 
+             $d_{max}$ [m] & 0.5 & $k_s$ [-] & $\frac{2v_{max}\Delta t \cdot s_m}{\sum_{i=1}^{n-1} \|g_{i+1} -g_i\|}$ \\ [1.0ex]             
+             \hline
+        \end{tabular}
+        \label{subtable:slow_learning_phase}
+    \end{subtable}
+    \hfill
+    \begin{subtable}[h]{0.3\textwidth}
+            \centering
+            \caption{Parameters of fast learning phase.}
+            \begin{tabular}{c c | c c} 
+                 \hline 
+                 Variable & Value & Variable & Value  \\ [0.1ex] 
+                 \hline
+                 \hline
+                 $v_{min}$ [m/s] & $4.0$ & $k_p$ [-] & $\frac{5.0 \cdot s_m}{\sum_{i=1}^{n-1} \|g_{i+1} -g_i\|}$\\ [0.2ex]
+                 $v_{max}$ [m/s] & $50.0 $  & $k_\omega$ [-] & 0.001\\ [0.2ex]
+                 $d_{max}$ [m] & 1.0 & $k_s$ [-] & $\frac{2v_{max}\Delta t \cdot s_m }{\left(\sum_{i=1}^{n-1} \|g_{i+1} -g_i\|\right)^2}$ \\ [1.0ex]            
+                 \hline
+            \end{tabular}
+            \label{subtable:fast_learning_phase}
+        \end{subtable}
+\label{table:parameters_learning_phase}
+\end{table*}
+
+
+
+
+
+\begin{table*}[h]
+\centering
+\caption{Parameters of the algorithm in the respective learning phase.}
+    \begin{subtable}[h]{0.3\textwidth}
+        \centering
+        \caption{General parameters of algorithm.}
+        \begin{tabular}{c | c} 
+             \hline 
+             Variable & Value  \\ [0.1ex] 
+             \hline
+             \hline
+             $\Delta t$ [s] & $0.025$  \\ [0.2ex]
+             $n$ [-] & 4  \\ [0.2ex]
+             $r_{tol}$ [m] & 0.5 \\ [0.2ex] 
+             $fall$ [-] & 1 \\ [0.2ex]
+             $k_{wp}$ [-] & $50.0$ \\ [0.2ex]
+             $r_{wp}$ [-] & $\exp(d_{wp}/r_{tol})$ \\ [1.0ex]
+             \hline
+        \end{tabular}
+        \label{subtable:generel_parameters}
+    \end{subtable}
+    \hfill
+    \begin{subtable}[h]{0.3\textwidth}
+        \centering
+        \caption{Parameters of slow learning phase.}
+        \begin{tabular}{c|c} 
+             \hline 
+             Variable & Value \\ [0.1ex] 
+             \hline
+             \hline
+             $v_{min}$ [m/s] & $1.0$ \\ [0.2ex]
+             $v_{max}$ [m/s] & $3.0 $ \\ [0.2ex]
+             $d_{max}$ [m] & 0.5 \\[0.2ex] 
+             $k_p$ [-] & $5.0 \cdot s_m$ \\ [0.2ex]
+             $k_\omega$ [-] & 0.01 \\ [0.2ex] 
+             $k_s$ [-] & $\frac{2v_{max}\Delta t \cdot s_m}{\sum_{i=1}^{n-1} \|g_{i+1} -g_i\|}$ \\ [1.0ex]
+             
+             \hline
+        \end{tabular}
+        \label{subtable:slow_learning_phase}
+    \end{subtable}
+    \hfill
+    \begin{subtable}[h]{0.3\textwidth}
+            \centering
+            \caption{Parameters of fast learning phase.}
+            \begin{tabular}{c|c} 
+                 \hline 
+                 Variable & Value  \\ [0.1ex] 
+                 \hline
+                 \hline
+                 $v_{min}$ [m/s] & $4.0$ \\ [0.2ex]
+                 $v_{max}$ [m/s] & $50.0 $ \\ [0.2ex]
+                 $d_{max}$ [m] & 1.0 \\ [0.2ex]
+                 $k_p$ [-] & $\frac{5.0 \cdot s_m}{\sum_{i=1}^{n-1} \|g_{i+1} -g_i\|}$ \\ [0.2ex]
+                 $k_\omega$ [-] & 0.001 \\ [0.2ex]
+                 $k_s$ [-] & $\frac{2v_{max}\Delta t \cdot s_m }{\left(\sum_{i=1}^{n-1} \|g_{i+1} -g_i\|\right)^2}$ \\ [1.0ex]
+                 
+                 \hline
+            \end{tabular}
+            \label{subtable:fast_learning_phase}
+        \end{subtable}
+\label{table:parameters_learning_phase}
+\end{table*}
+
+
+
+
+\begin{table*}[t]
+\centering
+\caption{Network architectures for 2D and 3D world settings.}
+        \begin{subtable}[h]{1.0\textwidth}
+        \centering
+            \caption{Network architecture for elektra VTOL3 controller in 2D world.}
+                \begin{tabular}{c|c|c|c|c|c|c|c} 
+                 \hline 
+                 Network & Type & Input & Hidden Layer & Activation & Last Layer & Output & Output Size \\ [0.1ex] 
+                 \hline
+                 \hline
+                 \multirow{2}*{actor} & \multirow{2}*{MLP} & \multirow{2}*{observation} & \multirow{2}*{2x128} & \multirow{2}*{tanh} & 1x128 & action mean & 2 \\ [0.1ex]
+                                      &                    &                            &                      &                     & 1x128 & action variance & 2 \\ [0.1ex]
+                 \hline
+                 critic & MLP & observation & 2x128 & tanh & 1x128 & value & 1 \\ [0.1ex] 
+                 \hline 
+            \end{tabular}
+        \label{table:network2D}
+        \end{subtable}
+    \newline
+    \vspace*{0.2cm}
+    \newline
+        \begin{subtable}[h]{1.0\textwidth}
+            \centering
+            \caption{Network architecture for quadrotor controller in 3D world.}
+            \begin{tabular}{c|c|c|c|c|c|c|c} 
+                 \hline 
+                 Network & Type & Input & Hidden Layer & Activation & Last Layer & Output & Output Size \\ [0.1ex] 
+                 \hline
+                 \hline
+                 \multirow{2}*{actor} & \multirow{2}*{MLP} & \multirow{2}*{observation} & \multirow{2}*{2x256} & \multirow{2}*{tanh} & 1x256 & action mean & 4 \\ [0.1ex]
+                                      &                    &                            &                      &                     & 1x256 & action variance & 4 \\ [0.1ex]
+                 \hline
+                 critic & MLP & observation & 2x256 & tanh & 1x128 & value & 1 \\ [0.1ex] 
+                 \hline
+            \end{tabular}
+        \label{table:network3D}
+        \end{subtable}
+\label{table:network}
+\end{table*}
+
+
+
+
+@article{Penicka_2022,
+	doi = {10.1109/lra.2022.3181755},
+  
+	%url = {https://doi.org/10.1109\%2Flra.2022.3181755},
+  
+	year = 2022,
+ 
+	month = jul,
+  
+	publisher = {Institute of Electrical and Electronics Engineers ({IEEE})},
+  
+	volume = {7},
+  
+	number = {3},
+  
+	pages = {7209--7216},
+  
+	author = {Robert Penicka and Yunlong Song and Elia Kaufmann and Davide Scaramuzza},
+  
+	title = {Learning Minimum-Time Flight in Cluttered Environments},
+  
+	journal = {{IEEE} Robotics and Automation Letters}
+}
+
+
+@article{Autonomic_Flights,
+        author = {Antonio Loquercio  and Elia Kaufmann  and René Ranftl  and Matthias Müller  and Vladlen Koltun  and Davide Scaramuzza},
+        
+        title = {Learning high-speed flight in the wild},
+        
+        journal = {Science Robotics},
+        
+        volume = {6},
+        
+        number = {59},
+        
+        pages = {eabg5810},
+        
+        year = {2021},
+        
+        month = oct,
+        
+        doi = {10.1126/scirobotics.abg5810},
+        
+        %url = {https://www.science.org/doi/abs/10.1126/scirobotics.abg5810}
+}
+
+
+@article{Maneuverability_Agility_Exp,
+        author = {Jon Verbeke and Joris De Schutter},
+        title ={Experimental maneuverability and agility quantification for rotary unmanned aerial vehicle},
+        journal = {International Journal of Micro Air Vehicles},
+        volume = {10},
+        number = {1},
+        pages = {3-11},
+        year = {2017},
+        month = oct,
+        doi = {10.1177/1756829317736204},
+        
+        %url = {https://doi.org/10.1177/1756829317736204},
+        %eprint = {https://doi.org/10.1177/1756829317736204}
+}
+
+@article{Maneuverability_Agility_Art,
+        author = {Evan Ackerman},
+        title ={AI-Powered Drone Learns Extreme Acrobatics},
+        journal = {{IEEE} Spectrum},
+        year = {2020},
+        month = oct,
+        url = {https://spectrum.ieee.org/ai-powered-drone-extreme-acrobatics},
+}
+
+@article{Drone_Applications,
+        author = {Juliane Hilf and Klaus Umbach},
+        title = {The Commercial Use of Drones},
+        pages = {65--71},
+        volume = {16},
+        number = {3},
+        journal = {Computer Law Review International},
+        doi = {doi:10.9785/cri-2015-0302},
+        year = {2015},
+        month = mar
+}
+
+@misc{flyonic,
+        author = {Finn Süberkrüb},
+        
+        title = {Flyonic},
+        
+        url = {http://docu.flyonic.de},
+}
+
+@misc{videos,
+        author = {Larissa Rickler},
+        
+        title = {Collection of Result Videos},
+        
+        url = {https://www.youtube.com/playlist?list=PLfNlYts0db6vorCQ8P05cJyFHPT-STbDf},
+}
+
+
+
+\begin{figure*}[b]
+    \centering
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results/reward_slow.svg}
+        \caption{Reward per step for the slow learning phase in 2D.}
+        \label{fig:2D_reward_slow}
+    \end{subfigure}
+    \hfill    
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results/reward_fast.svg}
+        \caption{Reward per step for the fast learning phase in 2D.}
+        \label{fig:2D_reward_fast}
+    \end{subfigure}
+    \hfill  
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results/success_rate.svg}
+        \caption{Success rate per step for both learning phases in 2D.}
+        \label{fig:2D_success_rate}
+    \end{subfigure}
+    \hfill  
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results/avg_velocity.svg}
+        \caption{Average velocity per step for both learning phases in 2D.}
+        \label{fig:2D_velocity}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results3D/reward_slow_3D.svg}
+        \caption{Reward per step for the slow learning phase in 3D.}
+        \label{fig:3D_reward_slow}
+    \end{subfigure}
+    \hfill    
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results3D/reward_fast_3D.svg}
+        \caption{Reward per step for the fast learning phase in 3D.}
+        \label{fig:3D_reward_fast}
+    \end{subfigure}
+    \hfill  
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results3D/success_rate_3D.svg}
+        \caption{Success rate per step for both learning phases in 3D.}
+        \label{fig:3D_success_rate}
+    \end{subfigure}
+    \hfill  
+    \begin{subfigure}[htb!]{0.22\textwidth}
+        \includesvg[width=\textwidth]{images/results3D/avg_velocity_3D.svg}
+        \caption{Average velocity per step for both learning phases in 3D.}
+        \label{fig:2D_velocity}
+    \end{subfigure}
+    
+    \caption{Experimental setup described in Section \ref{sec:experiments}. Note that in \ref{fig:time_slow} the completion time in step 1 is set to zero, since there were no successful flights.}
+    \label{fig:results}
+\end{figure*}

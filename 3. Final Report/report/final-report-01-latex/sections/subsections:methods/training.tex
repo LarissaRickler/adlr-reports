@@ -1,0 +1,33 @@
+We used an actor-critic algorithm as approximator. The applied optimization algorithm is Adam. The actor network produces actions learned via the Proximal Policy Optimization (PPO). Both actor and critic are multilayer perceptrons (MLP), see Table \ref{table:network} and Figure \ref{fig:actor} for details on their architectures. 
+
+\begin{table*}[t]
+\centering
+\caption{Network architectures for elektra VTOL3 controller in 2D world and for quadrotor controller in 3D world.}
+        
+                \begin{tabular}{c|c|c|c|c|c|c|c|c} 
+                 \hline 
+                 Dimension & Network & Type & Input & Hidden Layer & Activation & Last Layer & Output & Output Size \\ [0.1ex] 
+                 \hline
+                 \hline
+                 \multirow{3}*{2D} & \multirow{2}*{actor} & \multirow{2}*{MLP} & \multirow{2}*{observation} & \multirow{2}*{2x128} & \multirow{2}*{tanh} & 1x128 & action mean & 2 \\ [0.1ex]
+                                   &                        &                    &                            &                      &                     & 1x128 & action variance & 2 \\ [0.1ex]
+                 \cline{2-9}
+                  & critic & MLP & observation & 2x128 & tanh & 1x128 & value & 1 \\ [0.1ex] 
+                 \hline 
+                 \multirow{3}*{3D} &\multirow{2}*{actor} & \multirow{2}*{MLP} & \multirow{2}*{observation} & \multirow{2}*{2x256} & \multirow{2}*{tanh} & 1x256 & action mean & 4 \\ [0.1ex]
+                                   &                     &                    &                            &                      &                     & 1x256 & action variance & 4 \\ [0.1ex]
+                 \cline{2-9}
+                  & critic & MLP & observation & 2x256 & tanh & 1x128 & value & 1 \\ [0.1ex] 
+                 \hline
+                 \end{tabular}
+\label{table:network}
+\end{table*}
+
+The policy was trained while utilizing 8 parallel agents. This increases the speed of collecting data and diversifies the experienced states and observations. For training we used the Julia environment Flyonic \cite{flyonic} that provides simulated models with the appropriate dynamics of elektra VTOL3 and a quadrotor.  
+
+The training trajectories consisted of $n$ waypoints which were generated as follows: 
+\begin{align}
+\label{equ:trajectory_generation}
+    & wp_1 = (0,0,0)^T, \text{  }  wp_i = wp_{i-1} + z_i \text{ for } i = 2,...,n 
+\end{align}
+where $z_i$ was sampled from the multivariate uniform distribution $\mathcal{U}_3$ on $[-7,7]\times 0 \times [1.5,7] \subseteq \mathbb{R}^3$ for the 2D world setting and  $[-3,3]\times [-3,3] \times [0.5,3] \subseteq \mathbb{R}^3$ for the 3D world setting. The distance ranges were decreased in the 3D setting since the quadrotor is significantly smaller than the elektra model.
